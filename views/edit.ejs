@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista de Empleados</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+</head>
+<body class="bg-light">
+
+  <main class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-11">
+        <div class="card shadow border-0">
+          <div class="card-header bg-success text-white">
+            <h4 class="mb-0">Lista de Empleados</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <form action="/update" method="POST">
+                <table class="table table-striped table-bordered table-hover align-middle text-center">
+                  <thead class="table-dark">
+                    <tr>
+                      <th>ID</th>
+                      <th>Nombres</th>
+                      <th>Apellidos</th>
+                      <th>DNI</th>
+                      <th>Cargo</th>
+                      <th>Área</th>
+                      <th>Fecha Ingreso</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% registros.forEach(empleado => { %>
+                      <tr>
+                        <td><%= empleado.id %></td>
+                        <td>
+                          <input type="text" class="form-control" name="nombres_<%= empleado.id %>" value="<%= empleado.nombres %>" required>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" name="apellidos_<%= empleado.id %>" value="<%= empleado.apellidos %>" required>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" name="dni_<%= empleado.id %>" value="<%= empleado.dni %>" required>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" name="cargo_<%= empleado.id %>" value="<%= empleado.cargo %>" required>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" name="area_<%= empleado.id %>" value="<%= empleado.area %>" required>
+                        </td>
+                        <td>
+                          <input type="date" class="form-control" name="fechaIngreso_<%= empleado.id %>" value="<%= empleado.fechaIngreso %>" required>
+                        </td>
+                        <td>
+                          <button type="submit" class="btn btn-sm btn-outline-success">
+                            <i class="bi bi-save-fill"></i> Guardar
+                          </button>
+                          <a href="/delete/<%= empleado.id %>" class="btn btn-sm btn-outline-danger">
+                            <i class="bi bi-trash-fill"></i> Eliminar
+                          </a>
+                        </td>
+                      </tr>
+                    <% }) %>
+                  </tbody>
+                </table>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center mt-4">
+        <a href="/create" class="btn btn-warning btn-lg">
+          <i class="bi bi-plus-circle-fill me-2"></i>Agregar Registro
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="text-center text-muted py-3">
+    <small>&copy; 2025 Empleados App</small>
+  </footer>
+
+</body>
+</html>

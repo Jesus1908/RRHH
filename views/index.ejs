@@ -48,10 +48,10 @@
                       <td><%= empleado.area %></td>
                       <td><%= empleado.fechaIngreso %></td>
                       <td>
-                        <a href="/edit/<%= empleado.id %>" class="btn btn-sm btn-outline-primary me-2">
+                        <a href="./edit/<%= empleado.id %>" class="btn btn-sm btn-outline-primary me-2">
                           <i class="bi bi-pencil-fill"></i>
                         </a>
-                        <a href="/delete/<%= empleado.id %>" class="btn btn-sm btn-outline-danger">
+                        <a href="./delete/<%= empleado.id %>" class="btn btn-sm btn-outline-danger delete">
                           <i class="bi bi-trash-fill"></i>
                         </a>
                       </td>
@@ -74,6 +74,21 @@
   <footer class="text-center text-muted py-3">
     <small>&copy; 2025 Empleados App</small>
   </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lnkEliminar = document.querySelectorAll(".delete");
+
+      lnkEliminar.forEach(enlace => {
+        enlace.addEventListener("click", (event) => {
+          event.preventDefault(); 
+          if (confirm("¿Está seguro de eliminar este registro?")) {
+            window.location.href = event.target.getAttribute("href");
+          }
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>
