@@ -1,25 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const conexion = require('./database/db')
+const crud = require('./controllers/crud');
 
 router.get('/', (req, res) => {
-  conexion.query("SELECT * FROM empleados", (error, results) =>{
-    if(error){
-      throw error;
-    }else{
-      res.render('index', {registros: results  })
-    }
-  });
+  crud.list(req, res);
 });
 
-
-router.get('/create',(req,res) => {
+router.get('/create', (req, res) => {
   res.render('create');
 });
 
-
-const crud = require('./controllers/crud');
-
 router.post('/save', crud.save);
 
-module.exports = router; 
+router.post('/delete/:id', crud.delete);
+
+module.exports = router;
