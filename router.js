@@ -17,17 +17,16 @@ router.get('/create', (req, res) => {
   res.render('create');
 });
 
-router.post('/save', crud.save); 
-
-router.get('/edit/:id', (req, res) => {
-  conexion.query("SELECT * FROM empleados WHERE id = ?", [req.params.id], (error, results) => {
+router.get('/delete/:id', (req, res) => {
+  const idempleado = req.params.id;
+  conexion.query("DELETE FROM empleados WHERE id = ?", [idempleado], (error, results) => {
     if(error){
-      throw error;
+      throw(error);
     }else{
-      res.render('edit', { empleado: results[0]});
+      res.redirect('/');
     }
   });
 });
 
-router.post('/update', crud.update);
+router.post('/save', crud.save); 
 module.exports = router;

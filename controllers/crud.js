@@ -26,21 +26,4 @@ exports.save = (req, res) => {
   });  
 };
 
-exports.update = (req,res) => {
-  const id = req.body.id;
-  const nombres = req.body.nombres;
-  const apellidos = req.body.apellidos;
-  const dni= req.body.dni;
-  const cargo = req.body.cargo;
-  const area = req.body.area;
-  const fechaIngreso = req.body.fechaIngreso;
 
-  conexion.query(`UPDATE empleados SET ? WHERE id = ?`,
-    [{ nombres: nombres, apellidos:apellidos, dni:dni, cargo:cargo, area:area, fechaIngreso:fechaIngreso }, id], (error,results) =>{
-      if(error){
-        console.log(error);
-      }else{
-       res.redirect('/')
-      }
-    });
-};
